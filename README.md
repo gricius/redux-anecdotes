@@ -19,6 +19,27 @@ If you haven't done so already, separate the creation of action-objects to actio
 # 6.7: anecdotes, step5
 Separate the creation of new anecdotes into a component called AnecdoteForm. Move all logic for creating a new anecdote into this new component.
 
+# 6.8: anecdotes, step6
+Separate the rendering of the anecdote list into a component called AnecdoteList. Move all logic related to voting for an anecdote to this new component.
+
+Now the App component should look like this:
+
+```jsx
+import AnecdoteForm from './components/AnecdoteForm'
+import AnecdoteList from './components/AnecdoteList'
+
+const App = () => {
+  return (
+    <div>
+      <h2>Anecdotes</h2>
+      <AnecdoteList />
+      <AnecdoteForm />
+    </div>
+  )
+}
+
+export default App
+```
 
 
 
