@@ -41,5 +41,31 @@ const App = () => {
 export default App
 ```
 
+# 6.9 Better anecdotes, step7
+Implement filtering for the anecdotes that are displayed to the user.
+<img src="https://fullstackopen.com/static/e64e260dbd3b22669115b6eb9dcce7a5/5a190/9ea.png">
+
+Store the state of the filter in the redux store. It is recommended to create a new reducer, action creators, and a combined reducer for the store using the combineReducers function.
+
+Create a new Filter component for displaying the filter. You can use the following code as a template for the component:
+
+```jsx
+const Filter = () => {
+  const handleChange = (event) => {
+    // input-field value is in variable event.target.value
+  }
+  const style = {
+    marginBottom: 10
+  }
+
+  return (
+    <div style={style}>
+      filter <input onChange={handleChange} />
+    </div>
+  )
+}
+
+export default Filter
+```
 
 
