@@ -74,3 +74,7 @@ Install Redux Toolkit for the project. Move the Redux store creation into the fi
 Change the definition of the filter reducer and action creators to use the Redux Toolkit's createSlice function.
 
 Also, start using Redux DevTools to debug the application's state easier.
+
+# 6.11 Better anecdotes, step9
+Change also the definition of the anecdote reducer and action creators to use the Redux Toolkit's createSlice function.
+
