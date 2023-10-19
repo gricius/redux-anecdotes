@@ -123,3 +123,10 @@ const Notification = () => {
 You will have to make changes to the application's existing reducer. Create a separate reducer for the new functionality by using the Redux Toolkit's createSlice function.
 
 The application does not have to use the Notification component intelligently at this point in the exercises. It is enough for the application to display the initial value set for the message in the notificationReducer.
+
+# 6.13 Better anecdotes, step11
+Extend the application so that it uses the Notification component to display a message for five seconds when the user votes for an anecdote or creates a new anecdote:
+
+<img src='https://fullstackopen.com/static/c82fb74270b3ca5ce1edef02e2cf82bd/5a190/8ea.png'>
+
+It's recommended to create separate action creators for setting and moving notifications.
