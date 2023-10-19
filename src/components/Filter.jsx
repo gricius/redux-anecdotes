@@ -2,6 +2,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { setFilter } from '../reducers/filterReducer'
+import { setNotification, clearNotification } from '../reducers/notificationReducer'
 
 const Filter = () => {
   const dispatch = useDispatch()
@@ -9,6 +10,10 @@ const Filter = () => {
   const handleChange = (event) => {
     const filterText = event.target.value
     dispatch(setFilter(filterText))
+    dispatch(setNotification(`Filter set to "${filterText}"`))
+    setTimeout(() => {
+      dispatch(clearNotification())
+    }, 5000)
   }
 
   const style = {
