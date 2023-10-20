@@ -130,3 +130,8 @@ Extend the application so that it uses the Notification component to display a m
 <img src='https://fullstackopen.com/static/c82fb74270b3ca5ce1edef02e2cf82bd/5a190/8ea.png'>
 
 It's recommended to create separate action creators for setting and moving notifications.
+
+# 6.14 Anecdotes and the backend, step1
+When the application launches, fetch the anecdotes from the backend implemented using json-server.
+
+As the initial backend data, you can use, e.g. <a href="https://github.com/fullstack-hy2020/misc/blob/master/anecdotes.json">this</a>.
