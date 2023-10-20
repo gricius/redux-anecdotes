@@ -135,3 +135,6 @@ It's recommended to create separate action creators for setting and moving notif
 When the application launches, fetch the anecdotes from the backend implemented using json-server.
 
 As the initial backend data, you can use, e.g. <a href="https://github.com/fullstack-hy2020/misc/blob/master/anecdotes.json">this</a>.
+
+# 6.15 Anecdotes and the backend, step2
+Modify the creation of new anecdotes, so that the anecdotes are stored in the backend.
