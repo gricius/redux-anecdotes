@@ -6,11 +6,14 @@ import store from './store'
 import anecdotesService from './services/anecdotes'
 import { setAnecdotes } from './reducers/anecdoteReducer'
 
-console.log(store.getState())
-
 anecdotesService.getAll().then(anecdotes =>
   store.dispatch(setAnecdotes(anecdotes))
 )
+
+store.subscribe(() => {
+  const storeNow = store.getState()
+  console.log(storeNow)
+})
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
