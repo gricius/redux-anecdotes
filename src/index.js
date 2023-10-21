@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import App from './App'
 import store from './store'
 import anecdotesService from './services/anecdotes'
-import anecdoteReducer, { setAnecdotes } from './reducers/anecdoteReducer'
+import { setAnecdotes } from './reducers/anecdoteReducer'
 
 console.log(store.getState())
 

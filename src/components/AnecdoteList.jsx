@@ -2,6 +2,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { voteAnecdote } from "../reducers/anecdoteReducer"
 import { setNotification, clearNotification } from '../reducers/notificationReducer'
+import anecdotesService from "../services/anecdotes"
 
 const AnecdoteList = () => {
   const anecdotes = useSelector(state => {
@@ -12,13 +13,18 @@ const AnecdoteList = () => {
   })
   const dispatch = useDispatch()
 
-  const vote = (id) => {
-    dispatch(voteAnecdote(id))
-    console.log('vote', id)
-    dispatch(setNotification(`You voted for "${anecdotes.find(a => a.id === id).content}"`))
-    setTimeout(() => {
-      dispatch(clearNotification())
-    }, 5000)
+  const vote = async (id) => {
+    try {
+      await anecdotesService.voteAnecdote(id)
+      dispatch(voteAnecdote(id))
+      dispatch(setNotification(`You voted for "${anecdotes.find(a => a.id === id).content}"`))
+      setTimeout(() => {
+        dispatch(clearNotification())
+      }, 5000);
+    } catch (error) {
+      console.error("Failed to update vote in the database:", error)
+      dispatch(setNotification("Failed to update vote in the database"))
+    }
   }
 
   return (

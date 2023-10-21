@@ -138,3 +138,6 @@ As the initial backend data, you can use, e.g. <a href="https://github.com/fulls
 
 # 6.15 Anecdotes and the backend, step2
 Modify the creation of new anecdotes, so that the anecdotes are stored in the backend.
+
+# 6.16 Anecdotes and the backend, step3
+Modify the initialization of the Redux store to happen using asynchronous action creators, which are made possible by the Redux Thunk library.
