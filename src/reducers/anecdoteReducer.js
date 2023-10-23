@@ -6,13 +6,6 @@ const anecdoteSlice = createSlice({
   name: 'anecdotes',
   initialState: [],
   reducers: {
-    voteAnecdote: (state, action) => {
-      const id = action.payload
-      const anecdoteToVote = state.find((anecdote) => anecdote.id === id)
-      if (anecdoteToVote) {
-        anecdoteToVote.votes += 1
-      }
-    },
     appendAnecdotes: (state, action) => {
       state.push(action.payload)
     },
@@ -22,7 +15,7 @@ const anecdoteSlice = createSlice({
   },
 })
 
-export const { voteAnecdote, appendAnecdotes, setAnecdotes } = anecdoteSlice.actions
+export const { appendAnecdotes, setAnecdotes } = anecdoteSlice.actions
 
 export const initializeAnecdotes = () => {
   return async (dispatch) => {
@@ -35,6 +28,30 @@ export const createAnecdote = (content) => {
   return async (dispatch) => {
     const newAnecdote = await anecdotesService.createNew(content)
     dispatch(appendAnecdotes(newAnecdote))
+  }
+}
+
+export const voteAnecdote = (id) => {
+  return async (dispatch, getState) => {
+    const currentAnecdotes = getState().anecdotes
+    const anecdoteToVote = currentAnecdotes.find((anecdote) => anecdote.id === id)
+
+    if (!anecdoteToVote) {
+      console.error('Anecdote not found in the current state.')
+      return
+    }
+
+    try {
+      const response = await anecdotesService.voteAnecdote(anecdoteToVote.id)
+      const votedAnecdote = response.id
+      const updatedAnecdotes = currentAnecdotes.map((anecdote) =>
+        anecdote.id !== votedAnecdote ? anecdote : response
+      )
+
+      dispatch(setAnecdotes(updatedAnecdotes))
+    } catch (error) {
+      console.error('Error voting for anecdote:', error)
+    }
   }
 }
 

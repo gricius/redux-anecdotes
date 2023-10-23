@@ -2,29 +2,23 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { voteAnecdote } from "../reducers/anecdoteReducer"
 import { setNotification, clearNotification } from '../reducers/notificationReducer'
-import anecdotesService from "../services/anecdotes"
 
 const AnecdoteList = () => {
   const anecdotes = useSelector(state => {
-    const filter = state.filter.toLowerCase() // Get the filter state and convert to lowercase
+    const filter = state.filter.toLowerCase()
     return state.anecdotes
-      .filter(anecdote => anecdote.content.toLowerCase().includes(filter)) // Filter based on content
+      .filter(anecdote => anecdote.content.toLowerCase().includes(filter)) 
       .sort((a, b) => b.votes - a.votes)
   })
   const dispatch = useDispatch()
 
-  const vote = async (id) => {
-    try {
-      await anecdotesService.voteAnecdote(id)
-      dispatch(voteAnecdote(id))
-      dispatch(setNotification(`You voted for "${anecdotes.find(a => a.id === id).content}"`))
-      setTimeout(() => {
-        dispatch(clearNotification())
-      }, 5000);
-    } catch (error) {
-      console.error("Failed to update vote in the database:", error)
-      dispatch(setNotification("Failed to update vote in the database"))
-    }
+  const handleVote = async (id) => {
+    const anecdote = anecdotes.find(a => a.id === id)
+    dispatch(voteAnecdote(id))
+    dispatch(setNotification(`You voted for "${anecdote.content}"`))
+    setTimeout(() => {
+      dispatch(clearNotification())
+    }, 5000);
   }
 
   return (
@@ -36,7 +30,7 @@ const AnecdoteList = () => {
           </div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
+            <button onClick={() => handleVote(anecdote.id)}>vote</button>
           </div>
         </div>
       )}
