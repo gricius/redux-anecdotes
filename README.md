@@ -148,3 +148,12 @@ Also, modify the creation of a new anecdote to happen using asynchronous action 
 # 6.18 Anecdotes and the backend, step5
 Voting does not yet save changes to the backend. Fix the situation with the help of the Redux Thunk library.
 
+# Make an action creator, which enables one to provide the notification as follows:
+
+```jsx
+dispatch(setNotification(`you voted '${anecdote.content}'`, 10))
+```
+The first parameter is the text to be rendered and the second parameter is the time to display the notification given in seconds.
+
+Implement the use of this improved notification in your application.
+

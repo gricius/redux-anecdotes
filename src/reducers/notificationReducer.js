@@ -1,3 +1,4 @@
+// src/reducers/notificationReducer.js
 import { createSlice } from '@reduxjs/toolkit'
 
 const notificationSlice = createSlice({
@@ -14,4 +15,15 @@ const notificationSlice = createSlice({
 })
 
 export const { setNotification, clearNotification } = notificationSlice.actions
+
+// Action creator for setting notifications with a timeout
+export const setNotificationWithTimeout = (message, timeout) => {
+  return (dispatch) => {
+    dispatch(setNotification(message))
+
+    setTimeout(() => {
+      dispatch(clearNotification())
+    }, timeout)
+  }
+}
 export default notificationSlice.reducer
